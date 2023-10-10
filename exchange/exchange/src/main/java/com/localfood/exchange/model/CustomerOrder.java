@@ -1,16 +1,12 @@
 package com.localfood.exchange.model;
 
-import com.localfood.exchange.model.OrderItem;
-import com.localfood.exchange.model.User;
 import jakarta.persistence.*;
-
-import jakarta.persistence.Entity;
-
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Order {
+@Table(name = "customer_order")  // Specify the table name here
+public class CustomerOrder {  // Rename the class to match the new table name
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,10 +19,10 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "customerOrder")
     private List<OrderItem> orderItems;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(mappedBy = "customerOrder")
     private Delivery delivery;
 
     public Long getId() {
